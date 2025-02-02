@@ -5,7 +5,7 @@ Inspired by a 2023 Paper, **Using personal writings to detect dementia: A text m
 
 ## Model Architecture
 ### 🔹 Embedding Generation:
-Used BGE-large-en-v1.5 to generate sentence embeddings at an embedding dimension of 1024.
+Used BGE-large-en-v1.5 to generate sentence embeddings at embedding dimensions of 1024 to capture all minor nuances.
 
 ### 🔹 Classification:
 XGBoost (Gradient Boosted Decision Trees) powers our classification model, providing high accuracy and scalability [2].
