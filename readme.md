@@ -1,14 +1,7 @@
 # EarlyTrace.ai  
 **AI-Driven Analysis for Early Dementia Detection**
 
-EarlyTrace.ai leverages advanced machine learning to analyze writing samples, identifying cognitive changes linked to dementia. Our research builds upon insights from Asllani & Mullen (2023), which demonstrated that personal writings could reveal early dementia indicators.
-
-## Key Findings
-- ✅ Decreased Authenticity & Emotional Tone
-- ✅ Reduced Use of Functional Words (e.g., grammar, conjunctions, articles)
-- ✅ Lower Frequency of Emotional Words (happiness, sadness, anger)
-- ✅ Higher Pronoun Usage (e.g., “I,” “they”)
-- ✅ Fewer Time-Oriented Words (past, present, future references)
+Inspired by a 2023 Paper, **Using personal writings to detect dementia: A text mining approach [1]**, we trained an AI model to detect dementia in written texts quickly and efficiently. To do this, we first scrapped blog posts from people with and without dementia. From this, we got about 1.4 million tokens worth of training data. We then generated sentence embeddings using the BGE-large-en-v1.5 transformer model since it can run efficiently CPU only and ranks fairly high on the HuggingFace MTEB leaderboard, and the embedding dimensions of 1024 are large enough to capture the minor subtleties and nuances our texts. Sentence embeddings are a way to classify a text as a single vector. To classify the texts, we used gradient boosting with the XGBoost library to classify each text as either "likely dementia" or "not likely dementia." Out of our roughly 3000 training points, we set aside 20% for testing and validation. These training points were not used in the training of our model. We performed 5-fold cross-validation on our model, resulting in **an F1 score of 0.95 based on a total support of 606**.
 
 ## Data & Preprocessing
 - ✔ HTML & character cleaning
@@ -20,19 +13,24 @@ EarlyTrace.ai leverages advanced machine learning to analyze writing samples, id
 BGE-large-en-v1.5 converts text into dense numerical vectors for analysis.
 
 ### 🔹 Classification:
-XGBoost (Gradient Boosted Decision Trees) powers our classification model, providing high accuracy and scalability.
+XGBoost (Gradient Boosted Decision Trees) powers our classification model, providing high accuracy and scalability [2].
 
 ## Feature Refinement
 - ✔ Used LimeTextExplainer to identify high-impact words affecting predictions
 - ✔ Removed words that were topic-specific rather than cognitive indicators
 
+## Validation
+- ✔ Model had not previously seen the validation set of data
+- ✔ 5-fold cross-validation, resulting in **an F1 score of 0.95 based on a total support of 606**.
+
+
 ## Research Team
-- 🧑‍🔬 Finn Kliewer
-- 🧑‍💻 Ben Plaksienko
-- 📊 Alex Rasevych
+- 🧑‍🔬 Finn Kliewer (Cornell)
+- 🧑‍💻 Ben Plaksienko (NJIT)
+- 📊 Alex Rasevych (Rutgers)
 
 ### 📅 February 2, 2025
 
 ## References
-- 📖 Asllani B, Mullen DM (2023). Using personal writings to detect dementia: A text mining approach.
-- 🔗 NVIDIA (2025). [What is XGBoost? Learn More](https://www.nvidia.com/en-us/)
+- (1) 📖 Asllani B, Mullen DM (2023). Using personal writings to detect dementia: A text mining approach.
+- (2) 🔗 NVIDIA (2025). [What is XGBoost? Learn More](https://www.nvidia.com/en-us/)
