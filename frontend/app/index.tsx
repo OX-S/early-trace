@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-  View,
+  ActivityIndicator,
+  Alert,
+  Dimensions,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
   Text,
   TextInput,
-  StyleSheet,
-  ActivityIndicator,
   TouchableOpacity,
-  Alert,
   useColorScheme,
-  Dimensions,
-  Platform,
-  KeyboardAvoidingView
+  View
 } from 'react-native';
-import { PieChart } from 'react-native-chart-kit';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import {PieChart} from 'react-native-chart-kit';
+import Animated, {FadeIn, FadeOut} from 'react-native-reanimated';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const isSmallDevice = screenHeight < 700;
@@ -26,18 +26,50 @@ export default function App() {
   const theme = useColorScheme();
   const styles = theme === 'dark' ? darkStyles : lightStyles;
 
-  const simulateAPI = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          success: true,
-          result: 'No Dementia',
-          prob_dementia: 0.4,
-          prob_no_dementia: 0.6,
-        });
-      }, 1500);
+  // const simulateAPI = (input) => {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve({
+  //         success: true,
+  //         result: 'No Dementia',
+  //         prob_dementia: 0.4,
+  //         prob_no_dementia: 0.6,
+  //       });
+  //     }, 1500);
+  //   });
+  // };
+
+  const simulateAPI = async (inputText) => {
+  try {
+    const encodedText = encodeURIComponent(String(inputText));
+
+    const url = `http://127.0.0.1:8000/process?input_text=${encodedText}`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // input_text: inputText
+      // Change the property name (e.g. "text")
+      // to whatever your backend expects.
     });
-  };
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok (status ${response.status})`);
+    }
+
+    // data will have the shape:
+    // {
+    //   "result": "DEMENTIA" or "NO_DEMENTIA",
+    //   "prob_dementia": "0.XXXX",
+    //   "prob_no_dementia": "0.XXXX"
+    // }
+    return await response.json();
+  } catch (error) {
+    console.error('Error in simulateAPI:', error);
+    // You could return a fallback or throw the error again, depending on your needs
+    throw error;
+  }
+};
 
   const handlePress = async () => {
     if (!input.trim()) {
@@ -47,7 +79,7 @@ export default function App() {
 
     setLoading(true);
     try {
-      const response = await simulateAPI();
+      const response = await simulateAPI(input);
       setResult(response);
     } catch (error) {
       Alert.alert('Error', 'Something went wrong');
