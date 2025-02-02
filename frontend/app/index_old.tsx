@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
-import { ScrollView } from 'react-native';
-
 import {
   View,
   Text,
@@ -72,6 +70,19 @@ export default function App() {
   const theme = useColorScheme();
   const styles = theme === 'dark' ? darkStyles : lightStyles;
 
+  // const simulateAPI = () => {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve({
+  //         success: true,
+  //         result: 'No Dementia',
+  //         prob_dementia: 0.4,
+  //         prob_no_dementia: 0.6,
+  //       });
+  //     }, 1500);
+  //   });
+  // };
+
   const simulateAPI = async (inputText: any) => {
     try {
     const encodedText = encodeURIComponent(String(inputText));
@@ -104,7 +115,6 @@ export default function App() {
   }
 };
 
-
   const handlePress = async () => {
     if (!input.trim()) {
       Alert.alert('Error', 'Please enter some text');
@@ -113,7 +123,7 @@ export default function App() {
 
     setLoading(true);
     try {
-      const response = await simulateAPI(input);
+      const response = await simulateAPI(input)
       setResult(response);
     } catch (error) {
       Alert.alert('Error', 'Something went wrong');
@@ -225,93 +235,18 @@ export default function App() {
               </Animated.View>
             )}
 
-{activeRoute === 'About' && (
-  <Animated.View
-    entering={FadeIn.duration(500)}
-    exiting={FadeOut.duration(500)}
-    style={[styles.widget, { flex: 1 }]} // Make it scrollable
-  >
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <Text style={[styles.resultText, { color: theme === 'dark' ? '#E9ECEF' : '#2B2D42' }]}>
-        EarlyTrace.ai
-      </Text>
-      <Text style={[styles.tableLabel, { fontSize: 18, fontWeight: 'bold', marginBottom: 10, color: theme === 'dark' ? '#E9ECEF' : '#495057' }]}>
-        AI-Driven Analysis for Early Dementia Detection
-      </Text>
-
-      <Text style={{ fontSize: 14, color: theme === 'dark' ? '#E9ECEF' : '#495057', marginBottom: 10 }}>
-        EarlyTrace.ai leverages advanced machine learning to analyze writing samples, identifying cognitive changes linked to dementia. Our research builds upon insights from Asllani & Mullen (2023), which demonstrated that personal writings could reveal early dementia indicators.
-      </Text>
-
-      {/* Key Findings */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginBottom: 5 }]}>
-        Key Findings
-      </Text>
-      <Text style={styles.bullet}>✅ Decreased Authenticity & Emotional Tone</Text>
-      <Text style={styles.bullet}>✅ Reduced Use of Functional Words (e.g., grammar, conjunctions, articles)</Text>
-      <Text style={styles.bullet}>✅ Lower Frequency of Emotional Words (happiness, sadness, anger)</Text>
-      <Text style={styles.bullet}>✅ Higher Pronoun Usage (e.g., “I,” “they”)</Text>
-      <Text style={styles.bullet}>✅ Fewer Time-Oriented Words (past, present, future references)</Text>
-
-      {/* Data & Preprocessing */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 5 }]}>
-        Data & Preprocessing
-      </Text>
-      <Text style={styles.bullet}>✔ HTML & character cleaning</Text>
-      <Text style={styles.bullet}>✔ Filtering out links & reposts</Text>
-      <Text style={styles.bullet}>✔ Tokenization & stopword removal</Text>
-
-      {/* Model Architecture */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 5 }]}>
-        Model Architecture
-      </Text>
-      <Text style={[styles.bullet, { fontWeight: 'bold' }]}>🔹 Embedding Generation:</Text>
-      <Text style={styles.bullet}>BGE-large-en-v1.5 converts text into dense numerical vectors for analysis.</Text>
-
-      <Text style={[styles.bullet, { fontWeight: 'bold', marginTop: 5 }]}>🔹 Classification:</Text>
-      <Text style={styles.bullet}>XGBoost (Gradient Boosted Decision Trees) powers our classification model, providing high accuracy and scalability.</Text>
-
-      {/* Feature Refinement */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 5 }]}>
-        Feature Refinement
-      </Text>
-      <Text style={styles.bullet}>✔ Used LimeTextExplainer to identify high-impact words affecting predictions</Text>
-      <Text style={styles.bullet}>✔ Removed words that were topic-specific rather than cognitive indicators</Text>
-
-      {/* Research Team */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 5 }]}>
-        Research Team
-      </Text>
-      <Text style={styles.bullet}>🧑‍🔬 Finn Kliewer</Text>
-      <Text style={styles.bullet}>🧑‍💻 Ben Plaksienko</Text>
-      <Text style={styles.bullet}>📊 Alex Rasevych</Text>
-      <Text style={{ fontSize: 14, fontWeight: 'bold', color: theme === 'dark' ? '#E9ECEF' : '#495057', marginTop: 10 }}>
-        📅 February 2, 2025
-      </Text>
-
-      {/* References */}
-      <Text style={[styles.tableLabel, { fontSize: 16, fontWeight: 'bold', marginTop: 15, marginBottom: 5 }]}>
-        References
-      </Text>
-      <Text style={styles.bullet}>📖 Asllani B, Mullen DM (2023). Using personal writings to detect dementia: A text mining approach.</Text>
-      <Text style={styles.bullet}>
-        🔗 NVIDIA (2025). What is XGBoost?{' '}
-        <Text 
-          style={{ color: '#4D96FF', textDecorationLine: 'underline' }} 
-          onPress={() => Linking.openURL('https://www.nvidia.com/en-us/glossary/xgboost/')}
-        >
-          Learn More
-        </Text>
-      </Text>
-    </ScrollView>
-  </Animated.View>
-)}
-
-
-
-
-
-
+            {activeRoute === 'About' && (
+              <Animated.View
+                entering={FadeIn.duration(500)}
+                exiting={FadeOut.duration(500)}
+                style={styles.widget}
+              >
+                <Text style={styles.resultText}>About Screen</Text>
+                <Text style={styles.tableLabel}>
+                  This is a demo application for dementia prediction analysis.
+                </Text>
+              </Animated.View>
+            )}
 
 
 
@@ -436,20 +371,7 @@ const navDarkStyles = StyleSheet.create({
 });
 
 const baseStyles = StyleSheet.create({
-  bulletItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 4,
-  },
-  bullet: {
-    fontSize: 16,
-    marginRight: 6,
-    color: '#495057',
-  },
-  bulletText: {
-    fontSize: 14,
-    color: '#495057',
-  },
+
 
 
   githubIcon: {
@@ -514,7 +436,14 @@ const baseStyles = StyleSheet.create({
     marginBottom: 10,
   },
   
-  
+  githubButton: {
+    marginTop: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   
   githubButtonText: {
     fontSize: 16,
@@ -619,37 +548,6 @@ const baseStyles = StyleSheet.create({
 });
 
 const lightStyles = StyleSheet.create({
-
-
-
-  scrollViewContainer: {
-    flex: 1, // allows ScrollView to take up the full screen
-  },
-  scrollViewContent: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    flexGrow: 1, // allows the content to take up more space if needed
-    justifyContent: 'flex-start', // ensures content starts from top
-  },
-
-  
-
-
-
-  ...baseStyles,
-  bullet: {
-    ...baseStyles.bullet,
-    color: '#495057',
-  },
-  bulletText: {
-    ...baseStyles.bulletText,
-    color: '#495057',
-  },
-
-
-
-
-
   ...baseStyles,
   container: { ...baseStyles.container, backgroundColor: '#F8F9FA' },
   widget: { ...baseStyles.widget, backgroundColor: '#FFFFFF' },
@@ -692,28 +590,6 @@ const lightStyles = StyleSheet.create({
 });
 
 const darkStyles = StyleSheet.create({
-
-  scrollViewContent: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    flexGrow: 1,
-  },
-
-
-
-  ...baseStyles,
-  bullet: {
-    ...baseStyles.bullet,
-    color: '#E9ECEF',
-  },
-  bulletText: {
-    ...baseStyles.bulletText,
-    color: '#E9ECEF',
-  },
-
-
-
-
   ...baseStyles,
   container: { ...baseStyles.container, backgroundColor: '#121212' },
   widget: { ...baseStyles.widget, backgroundColor: '#1E1E1E' },
