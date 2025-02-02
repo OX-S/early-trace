@@ -123,7 +123,7 @@ export default function App() {
 
     setLoading(true);
     try {
-      const response = await simulateAPI();
+      const response = await simulateAPI(input)
       setResult(response);
     } catch (error) {
       Alert.alert('Error', 'Something went wrong');
