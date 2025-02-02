@@ -70,18 +70,50 @@ export default function App() {
   const theme = useColorScheme();
   const styles = theme === 'dark' ? darkStyles : lightStyles;
 
-  const simulateAPI = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          success: true,
-          result: 'No Dementia',
-          prob_dementia: 0.4,
-          prob_no_dementia: 0.6,
-        });
-      }, 1500);
+  // const simulateAPI = () => {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve({
+  //         success: true,
+  //         result: 'No Dementia',
+  //         prob_dementia: 0.4,
+  //         prob_no_dementia: 0.6,
+  //       });
+  //     }, 1500);
+  //   });
+  // };
+
+  const simulateAPI = async (inputText) => {
+    try {
+    const encodedText = encodeURIComponent(String(inputText));
+
+    const url = `http://127.0.0.1:8000/process?input_text=${encodedText}`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      // input_text: inputText
+      // Change the property name (e.g. "text")
+      // to whatever your backend expects.
     });
-  };
+
+    if (!response.ok) {
+      throw new Error(`Network response was not ok (status ${response.status})`);
+    }
+
+    // data will have the shape:
+    // {
+    //   "result": "DEMENTIA" or "NO_DEMENTIA",
+    //   "prob_dementia": "0.XXXX",
+    //   "prob_no_dementia": "0.XXXX"
+    // }
+    return await response.json();
+  } catch (error) {
+    console.error('Error in simulateAPI:', error);
+    // You could return a fallback or throw the error again, depending on your needs
+    throw error;
+  }
+};
 
   const handlePress = async () => {
     if (!input.trim()) {
