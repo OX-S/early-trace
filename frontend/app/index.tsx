@@ -83,7 +83,7 @@ export default function App() {
   //   });
   // };
 
-  const simulateAPI = async (inputText) => {
+  const simulateAPI = async (inputText: any) => {
     try {
     const encodedText = encodeURIComponent(String(inputText));
 
