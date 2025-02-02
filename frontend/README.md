@@ -108,11 +108,25 @@ Below is a visual demonstration of both modes:
 
 ---
 
+## **Libraries Used**
+
+This project leverages the following libraries and tools:
+
+- **React Native**: Framework for building native apps using React.
+- **Expo**: Toolchain for simplifying React Native development.
+- **react-native-reanimated**: For implementing animations with better performance.
+- **react-native-chart-kit**: For creating data visualizations like pie charts.
+- **react-native-vector-icons**: For using scalable vector icons in the app.
+- **react-native-gesture-handler**: For handling gestures in navigation and animations.
+- **KeyboardAvoidingView**: To enhance user input experiences on mobile.
+
+---
+
 ## **Future Enhancements**
 
 Some potential improvements for contributors:
 
-- **Implement a new text based backend** to replace the simulated dimentia API.
+- **Implement a different text based backend** to replace the simulated dimentia API.
 - **Add accessibility features** such as VoiceOver/TalkBack support.
 - **Localization support** for multiple languages.
 - **User authentication** for saving previous analyses.
@@ -132,6 +146,7 @@ Contributions are welcome! Please follow these steps:
 For major changes, please open an issue first to discuss what you'd like to change.
 
 ---
+
 
 
 
