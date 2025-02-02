@@ -216,7 +216,7 @@ export default function App() {
               </Animated.View>
             )}
 
-// Add this import
+
 
 {activeRoute === 'Github' && (
   <Animated.View
