@@ -10,10 +10,10 @@ This project utilizes **BGE-large-en-v1.5** for embedding generation and **XGBoo
 
 ### Features
 1. **Embedding Generation**:
-   - Uses `BGE-large-en-v1.5` from **SentenceTransformers** to convert text into dense numerical vectors for downstream analysis.
+   - Uses `BGE-large-en-v1.5` from **SentenceTransformers** to convert text into dense embeddings for downstream analysis.
 
 2. **Classification**:
-   - Predicts the likelihood of dementia using **XGBoost**, a Gradient Boosted Decision Trees model.
+   - Classifies each text using **XGBoost**, a Gradient Boosted Decision Trees model.
 
 3. **API Endpoint**:
    - **POST /process**:
