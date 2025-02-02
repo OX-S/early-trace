@@ -1,4 +1,3 @@
-# Frontend resources
 # React Native Dementia Analysis App
 
 ## Overview
@@ -69,10 +68,10 @@ npm run ios  # or yarn ios
 Below is a visual demonstration of both modes:
 
 #### **Dark Mode**
-![Dark Mode](file-Vj1Yq7nW841TW4fwnbSjDY)
+![Dark Mode](./dark.png)
 
 #### **Light Mode**
-![Light Mode](file-DwtVA8jYRgYPbnnvWVCDre)
+![Light Mode](./light.png)
 
 ### **2. Multi-Screen Navigation**
 
@@ -113,7 +112,7 @@ Below is a visual demonstration of both modes:
 
 Some potential improvements for contributors:
 
-- **Implement a different text based backend** to replace current API.
+- **Implement a real backend** to replace the simulated API.
 - **Add accessibility features** such as VoiceOver/TalkBack support.
 - **Localization support** for multiple languages.
 - **User authentication** for saving previous analyses.
@@ -134,7 +133,9 @@ For major changes, please open an issue first to discuss what you'd like to chan
 
 ---
 
+## **License**
 
+This project is licensed under the **MIT License**.
 
 ---
 
