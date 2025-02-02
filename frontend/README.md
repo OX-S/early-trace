@@ -113,7 +113,7 @@ Below is a visual demonstration of both modes:
 
 Some potential improvements for contributors:
 
-- **Implement a real backend** to replace the simulated API.
+- **Implement a different text based backend** to replace current API.
 - **Add accessibility features** such as VoiceOver/TalkBack support.
 - **Localization support** for multiple languages.
 - **User authentication** for saving previous analyses.
