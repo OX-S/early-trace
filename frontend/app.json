@@ -4,7 +4,7 @@
     "userInterfaceStyle": "automatic",
     "orientation": "default",
     "web": {
-      "output": "static",
+      "output": "single",
       "bundler": "metro"
     },
     "plugins": [
@@ -14,6 +14,8 @@
           "origin": "https://n"
         }
       ]
-    ]
+    ],
+    "name": "EarlyTrace.ai",
+    "slug": "EarlyTrace"
   }
 }
