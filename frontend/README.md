@@ -112,7 +112,7 @@ Below is a visual demonstration of both modes:
 
 Some potential improvements for contributors:
 
-- **Implement a real backend** to replace the simulated API.
+- **Implement a new text based backend** to replace the simulated dimentia API.
 - **Add accessibility features** such as VoiceOver/TalkBack support.
 - **Localization support** for multiple languages.
 - **User authentication** for saving previous analyses.
@@ -133,11 +133,8 @@ For major changes, please open an issue first to discuss what you'd like to chan
 
 ---
 
-## **License**
 
-This project is licensed under the **MIT License**.
 
----
 
 This **React Native application** is **well-structured, visually interactive, and mobile-responsive**. It provides opportunities for **contributors to improve features, optimize performance, and expand its capabilities**. 🚀
 
