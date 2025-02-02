@@ -29,3 +29,4 @@ XGBoost (Gradient Boosted Decision Trees) powers our classification model, provi
 ## References
 - (1) 📖 Asllani B, Mullen DM (2023). Using personal writings to detect dementia: A text mining approach.
 - (2) 🔗 NVIDIA (2025). [What is XGBoost? Learn More](https://www.nvidia.com/en-us/)
+- (3) 🔗 https://docs.google.com/presentation/d/1jpBfdRao1OESWHJHArM3evJJBjT8VINasTR8f9SRLR0/edit?usp=sharing
