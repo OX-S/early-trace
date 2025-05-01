@@ -126,7 +126,7 @@ This project leverages the following libraries and tools:
 
 Some potential improvements for contributors:
 
-- **Implement a different text based backend** to replace the simulated dimentia API.
+
 - **Add accessibility features** such as VoiceOver/TalkBack support.
 - **Localization support** for multiple languages.
 - **User authentication** for saving previous analyses.
